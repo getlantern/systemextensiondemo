@@ -1,5 +1,4 @@
 import NetworkExtension
-//import SystemExtensions // For OSSystemExtensionRequest
 import OSLog
 
 class VPNManagerViewModel: ObservableObject {
@@ -8,7 +7,6 @@ class VPNManagerViewModel: ObservableObject {
 
     private var manager: NETunnelProviderManager?
     let logger = Logger(subsystem: "org.getlantern.lantern", category: "VPNManager")
-    //let providerBundleID = "org.getlantern.lantern.PacketTunnel"
     let providerBundleID = "org.getlantern.SystemExtenstionTest.PacketTunnel"
     
     init() {
@@ -18,13 +16,7 @@ class VPNManagerViewModel: ObservableObject {
             await setupVPN()
             print("install finished")
             try? self.manager?.connection.startVPNTunnel()
-            //startVPNTunnel()
-            //print("started VPN tunnel")
         }
-        //loadManager()
-         
-        //savePreferencesAndEnable()
-        //startVPNTunnel()
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(vpnStatusDidChange(_:)),

@@ -1,7 +1,7 @@
 import NetworkExtension
 import OSLog
 
-class PacketTunnelProvider: NEPacketTunnelProvider {
+class PacketTunnelProvider: ExtensionProvider {
     
     static let logger = Logger(subsystem: "org.getlantern.lantern", category: "PacketTunnelProvider")
     
@@ -13,8 +13,9 @@ class PacketTunnelProvider: NEPacketTunnelProvider {
         super.init()
     }
 
-    override func startTunnel(options: [String : NSObject]?, completionHandler: @escaping (Error?) -> Void) {
-        // Add code here to start the process of connecting the tunnel.
+    override func startTunnel(options: [String: NSObject]?) async throws {
+        logger.log("PacketTunnelProvider starting tunnel")
+      try await super.startTunnel(options: options)
     }
     
     override func stopTunnel(with reason: NEProviderStopReason, completionHandler: @escaping () -> Void) {
